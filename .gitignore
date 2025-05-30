@@ -1,0 +1,71 @@
+### 开发环境 ###
+# IDE配置
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+.springBeans
+.factorypath
+
+# 操作系统生成文件
+.DS_Store
+Thumbs.db
+
+### Maven构建 ###
+# 编译输出
+target/
+​**​/target/
+build/
+​**​/build/
+bin/
+.mvn/wrapper/maven-wrapper.properties
+
+# Maven Wrapper（仅在父项目保留）
+# !mvnw
+# !mvnw.cmd
+
+### 日志与临时文件 ###
+*.log
+*.log.*
+logs/
+​**​/logs/
+*.pid
+*.seed
+*.dump
+tmp/
+
+### 环境配置 ###
+# Spring本地配置
+config/
+​**​/config/
+application-local*
+bootstrap-local*
+
+# 微服务组件本地存储
+nacos/
+sentinel/
+data/
+
+### 敏感信息 ###
+*.keystore
+*.jks
+*.key
+*.cert
+*.p12
+*.pkcs12
+.env
+*.enc
+*.pub
+*.secret
+
+### 测试相关 ###
+test-output/
+*.jfr
+*.hprof
+
+### 数据库 ###
+# H2嵌入式数据库
+*.h2.db
+*.mv.db
