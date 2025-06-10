@@ -1,0 +1,88 @@
+# ========================
+# Java 项目通用 .gitignore
+# ========================
+
+### 1. 编译产物与构建输出 ###
+# Maven/Gradle 编译输出目录（包含class文件、打包产物等）
+target/
+build/
+# 单个编译文件、包文件
+*.class
+*.jar
+*.war
+*.ear
+*.apk
+*.ap_     # Android 编译中间文件
+*.dex     # Android 字节码文件
+
+
+### 2. IDE 与编辑器配置 ###
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+# Eclipse
+*.project
+*.classpath
+*.settings/
+# VS Code
+.vscode/
+*.code-workspace
+# 通用编辑器临时文件（如 Vim 交换文件）
+*.swp
+*.swo
+
+
+### 3. 构建工具缓存 ###
+# Maven 本地仓库缓存（若项目内无自定义仓库，建议忽略）
+.m2/
+# Gradle 缓存与脚本
+.gradle/
+gradle.properties
+gradlew
+gradlew.bat
+mvnw
+mvnw.cmd
+
+
+### 4. 运行时与日志文件 ###
+# 日志文件（单个文件或目录）
+*.log
+log/
+logs/
+# 临时文件
+tmp/
+temp/
+# JVM 崩溃日志
+hs_err_pid*
+
+
+### 5. 系统与环境相关 ###
+# macOS 系统文件
+.DS_Store
+.Spotlight-V100
+.Trashes
+# Windows 系统文件
+Thumbs.db
+Desktop.ini
+# 本地环境配置（勿提交敏感信息，如数据库密码）
+.env
+local.properties
+*.env
+
+
+### 6. 特殊场景补充（可选） ###
+# 如果使用 Docker，可添加：
+# docker-compose.override.yml
+# target/docker/
+# 如果是 Spring Boot 项目，可忽略内置 Tomcat 解压目录：
+# target/tomcat/
+
+
+### 关键注意事项 ###
+# 1. 若文件已被 Git 追踪（曾提交过），需先清除缓存再生效：
+#    git rm -r --cached .
+#    git commit -m "更新 .gitignore 规则"
+# 2. 如需保留特定文件，可通过 `!` 例外（例：保留某配置文件）：
+#    !src/main/resources/special.config
