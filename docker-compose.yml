@@ -1,0 +1,16 @@
+services:
+  akshare:  # AKShare 服务
+    image: registry.cn-shanghai.aliyuncs.com/akfamily/aktools:jupyter
+    container_name: akshare_service
+    ports:
+      - "8888:8888"  # 暴露 JupyterLab 端口
+    volumes:
+      - ./akshare_data:/home  # 挂载数据目录（Windows路径需转换）
+    command: jupyter-lab --allow-root --no-browser --ip=0.0.0.0
+    networks:
+      - stockinfo-network
+
+networks:
+  stockinfo-network:
+    driver: bridge 
+
