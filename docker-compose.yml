@@ -1,14 +1,14 @@
 services:
-  akshare:  # AKShare 服务
-    image: registry.cn-shanghai.aliyuncs.com/akfamily/aktools:jupyter
+  akshare:  # AKShare 服务, 使用 AKTools 提供 HTTP API
+    image: aktools:latest  # 注意：使用本地代码构建的 AKTools 镜像
     container_name: akshare_service
     ports:
-      - "8888:8888"  # 暴露 JupyterLab 端口
+      - "8080:8080"
     volumes:
       - ./akshare_data:/home  # 挂载数据目录（Windows路径需转换）
-    command: jupyter-lab --allow-root --no-browser --ip=0.0.0.0
-    networks:
-      - stockinfo-network
+    environment:
+      - TZ=Asia/Shanghai  # 设置时区
+    command: python -m aktools --host 0.0.0.0 --port 8080  # 添加启动命令
 
 networks:
   stockinfo-network:
