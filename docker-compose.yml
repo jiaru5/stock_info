@@ -39,9 +39,24 @@ services:
     container_name: rocketmq
     ports:
       - "9876:9876"
-      - "8081:8081"
     environment:
       - JAVA_OPT_EXT=-server -Xms512m -Xmx512m -Xmn256m
+    command: sh mqnamesrv
+    networks:
+      - stockinfo-network
+
+  rocketmq-broker:
+    image: apache/rocketmq:5.1.4
+    container_name: rocketmq-broker
+    depends_on:
+      - rocketmq
+    ports:
+      - "10911:10911"
+      - "10909:10909"
+    environment:
+      - NAMESRV_ADDR=rocketmq:9876
+      - JAVA_OPT_EXT=-server -Xms512m -Xmx512m -Xmn256m
+    command: sh mqbroker -n rocketmq:9876 --enable-proxy
     networks:
       - stockinfo-network
 
