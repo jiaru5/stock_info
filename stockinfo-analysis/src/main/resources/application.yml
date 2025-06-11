@@ -1,0 +1,19 @@
+server:
+  port: 18080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/postgres
+    username: starter
+    password: starter123
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+
+rocketmq:
+  name-server: rocketmq:9876
+  producer:
+    group: stockinfo-analysis-producer

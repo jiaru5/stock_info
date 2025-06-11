@@ -10,6 +10,41 @@ services:
       - TZ=Asia/Shanghai  # 设置时区
     command: python -m aktools --host 0.0.0.0 --port 8080  # 添加启动命令
 
+  stockinfo-analysis:
+    build: ./stockinfo-analysis
+    container_name: stockinfo_analysis_service
+    ports:
+      - "18080:18080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - postgres
+      - rocketmq
+    networks:
+      - stockinfo-network
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: starter
+      POSTGRES_PASSWORD: starter123
+    ports:
+      - "5432:5432"
+    networks:
+      - stockinfo-network
+
+  rocketmq:
+    image: apache/rocketmq:5.1.4
+    container_name: rocketmq
+    ports:
+      - "9876:9876"
+      - "8081:8081"
+    environment:
+      - JAVA_OPT_EXT=-server -Xms512m -Xmx512m -Xmn256m
+    networks:
+      - stockinfo-network
+
 networks:
   stockinfo-network:
     driver: bridge 
