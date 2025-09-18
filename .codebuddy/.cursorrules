@@ -1,0 +1,36 @@
+// Cursor开发规则配置
+{
+  "rules": [
+    {
+      "name": "architecture-layers",
+      "description": "强制遵守分层架构规范",
+      "pattern": "import.*(interfaces.*application|application.*domain|domain.*infrastructure|infrastructure.*interfaces)",
+      "message": "禁止跨层依赖！请遵循: Interfaces → Application → Domain ← Infrastructure",
+      "severity": "error"
+    },
+    {
+      "name": "java-naming-conventions",
+      "description": "Java命名规范检查",
+      "pattern": "(class|interface|enum)\\s+[a-z]",
+      "message": "类名必须使用PascalCase命名规范",
+      "severity": "warning"
+    },
+    {
+      "name": "test-coverage",
+      "description": "测试覆盖率要求",
+      "pattern": "public\\s+(class|interface|enum).*\\{[^}]*public\\s+\\w+\\s+\\w+\\s*\\([^}]*\\}[^}]*\\}",
+      "message": "发现未测试的公共方法，请添加单元测试",
+      "severity": "info"
+    },
+    {
+      "name": "security-hardcoded-secrets",
+      "description": "禁止硬编码敏感信息",
+      "pattern": "=\"(password|secret|key|token)\"",
+      "message": "发现可能硬编码的敏感信息，请使用环境变量或配置中心",
+      "severity": "error"
+    }
+  ],
+  "filePatterns": {
+    "**/*.java": ["architecture-layers", "java-naming-conventions", "test-coverage", "security-hardcoded-secrets"]
+  }
+}
